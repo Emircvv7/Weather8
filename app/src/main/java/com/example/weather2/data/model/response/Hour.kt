@@ -1,8 +1,8 @@
-package com.example.weather2.response
+package com.example.weather2.data.model.response
 
-data class Current(
-    val last_updated_epoch: Long,
-    val last_updated: String,
+data class Hour(
+    val time_epoch: Long,
+    val time: String,
     val temp_c: Double,
     val temp_f: Double,
     val is_day: Int,
@@ -23,5 +23,6 @@ data class Current(
     val vis_miles: Double,
     val uv: Double,
     val gust_mph: Double,
+    val dayOfWeek: String,
     val gust_kph: Double
 )

@@ -1,9 +1,11 @@
-package com.example.weather2
+package com.example.weather2.app
 
 import android.app.Application
 import androidx.room.Room
-import com.example.weather2.data.room.AppDatabase
+import com.example.weather2.data.dao.AppDatabase
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class App : Application() {
 
     companion object {

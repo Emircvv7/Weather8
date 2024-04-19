@@ -1,4 +1,4 @@
-package com.example.weather2.response
+package com.example.weather2.data.model.response
 
 data class Day(
     val maxtemp_c: Double,

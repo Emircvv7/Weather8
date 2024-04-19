@@ -1,4 +1,4 @@
-package com.example.weather2.data.room
+package com.example.weather2.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -7,6 +7,7 @@ import androidx.room.Query
 
 @Dao
 interface WeatherDao {
+
     @Query("SELECT * FROM weatherentity")
     fun getAll(): List<WeatherEntity>
 

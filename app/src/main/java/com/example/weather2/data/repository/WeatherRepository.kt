@@ -1,16 +1,18 @@
-package com.example.weather2.data
+package com.example.weather2.data.repository
 
-import com.example.weather2.data.room.WeatherEntity
-import com.example.weather2.data.room.WeatherDao
-import com.example.weather2.response.WeatherResponse
+import com.example.weather2.data.api.WeatherApi
+import com.example.weather2.data.dao.WeatherEntity
+import com.example.weather2.data.dao.WeatherDao
+import com.example.weather2.data.model.response.WeatherResponse
+import javax.inject.Inject
 
-class WeatherRepository(
+class WeatherRepository @Inject constructor(
     private val api: WeatherApi,
     private val weatherDao: WeatherDao
 ) {
 
     suspend fun getWeather(location: String, days: Int, aqi: String, alerts: String): WeatherResponse {
-        val key = "8a8b25949fec425599f92306240304"
+        val key = "8608d5e7c37542218e344059241904"
         val response = api.getForecast(key, location, days, aqi, alerts)
 
         val weatherEntity = convertResponseToEntity(response)

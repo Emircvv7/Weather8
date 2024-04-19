@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#1C6FB1"
     android:orientation="horizontal"
-    tools:context=".presentation.MainActivity">
+    tools:context=".presentation.view.MainActivity">
 
     <TextView
         android:id="@+id/arrow"

@@ -1,4 +1,4 @@
-package com.example.weather2.data.room
+package com.example.weather2.data.dao
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

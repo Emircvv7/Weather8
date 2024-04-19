@@ -1,4 +1,4 @@
-package com.example.weather2.presentation
+package com.example.weather2.presentation.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weather2.databinding.ItemWeatherBinding
-import com.example.weather2.response.Hour
-import com.example.weather2.response.ForecastDay
+import com.example.weather2.data.model.response.Hour
+import com.example.weather2.data.model.response.ForecastDay
 import java.text.SimpleDateFormat
 import java.util.*
 
