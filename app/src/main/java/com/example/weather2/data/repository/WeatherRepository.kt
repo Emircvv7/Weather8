@@ -1,5 +1,6 @@
 package com.example.weather2.data.repository
 
+import com.example.weather2.Resource
 import com.example.weather2.data.api.WeatherApi
 import com.example.weather2.data.dao.WeatherEntity
 import com.example.weather2.data.dao.WeatherDao
@@ -9,18 +10,19 @@ import javax.inject.Inject
 class WeatherRepository @Inject constructor(
     private val api: WeatherApi,
     private val weatherDao: WeatherDao
-) {
+) : BaseRepository() {
 
-    suspend fun getWeather(location: String, days: Int, aqi: String, alerts: String): WeatherResponse {
-        val key = "8608d5e7c37542218e344059241904"
-        val response = api.getForecast(key, location, days, aqi, alerts)
+    suspend fun getWeather(location: String, days: Int, aqi: String, alerts: String): Resource<WeatherResponse> {
+        return safeApiCall {
+            val key = "8608d5e7c37542218e344059241904"
+            val response = api.getForecast(key, location, days, aqi, alerts)
 
-        val weatherEntity = convertResponseToEntity(response)
-        weatherDao.insert(weatherEntity)
+            val weatherEntity = convertResponseToEntity(response)
+            weatherDao.insert(weatherEntity)
 
-        return response
+            response
+        }
     }
-
 
     suspend fun getLocalWeather(): List<WeatherEntity> {
         return weatherDao.getAll()

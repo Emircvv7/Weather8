@@ -1,8 +1,6 @@
-package com.example.weather2.presentation.viewmodel
+package com.example.weather2.presentation.viewmodels
 
 import GetWeatherUseCase
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.weather2.data.model.response.WeatherResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,15 +11,21 @@ import javax.inject.Inject
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _weatherResponse = MutableStateFlow<WeatherResponse?>(null)
     val weatherResponse: StateFlow<WeatherResponse?> = _weatherResponse
 
     fun getWeather(location: String, days: Int, aqi: String, alerts: String) {
-        viewModelScope.launch {
+        _uiState.value = UiState.Loading
+        launch {
             val response = getWeatherUseCase.execute(location, days, aqi, alerts)
-            _weatherResponse.value = response
+            if (response is Resource.Success) {
+                _uiState.value = UiState.Success(response.data)
+                _weatherResponse.value = response.data
+            } else if (response is Resource.Error) {
+                _uiState.value = UiState.Error(response.message)
+            }
         }
     }
 }

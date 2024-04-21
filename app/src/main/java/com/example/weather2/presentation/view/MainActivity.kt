@@ -9,13 +9,13 @@ import com.example.weather2.data.dao.AppDatabase
 import com.example.weather2.data.dao.WeatherDao
 import com.example.weather2.databinding.ActivityMainBinding
 import com.example.weather2.presentation.view.adapter.WeatherAdapter
-import com.example.weather2.presentation.viewmodel.WeatherViewModel
+import com.example.weather2.presentation.viewmodels.WeatherViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private val viewModel: WeatherViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
